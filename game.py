@@ -21,11 +21,8 @@ class Game:
         ]
         # Loop turns until winner state is found
         while self.winner == None:
-            # This will clear the terminal every time it loops
-            os.system('clear')
             self.print_board()
             self.get_play()
-            os.system('clear')
             self.print_board()
             self.check_winner()
             self.switch_turn()
@@ -39,6 +36,8 @@ class Game:
             self.current_turn = 'O'
         return
     def print_board(self):
+        # This will clear the terminal 
+        os.system('clear')
         print(
             f" {self.gameboard[0]} | {self.gameboard[1]} | {self.gameboard[2]} \n - - - - - \n {self.gameboard[3]} | {self.gameboard[4]} | {self.gameboard[5]} \n - - - - - \n {self.gameboard[6]} | {self.gameboard[7]} | {self.gameboard[8]}"
         )
@@ -55,13 +54,16 @@ class Game:
             else:
                 print('This space has already been played')
     def check_winner(self):
-        # check ALL of the win condition options
+
+        # track number of unplayed spaces
+        num_spaces = 0
+        for obj in self.gameboard:
+            if obj.mark == ' ':
+                num_spaces += 1
+
+        # loop ALL of the win condition options
         for state in self.winning_states:
-            # track number of unplayed spaces
-            num_spaces = 0
-            for obj in self.gameboard:
-                if obj.mark == ' ':
-                    num_spaces += 1
+
             # X win options        
             if self.gameboard[state[0]].mark == 'X' and self.gameboard[state[
                     1]].mark == 'X' and self.gameboard[state[2]].mark == 'X':
@@ -72,7 +74,7 @@ class Game:
                     1]].mark == 'O' and self.gameboard[state[2]].mark == 'O':
                 self.winner = 'O'
                 return True
-            # tie condition    
+            # tie condition (must come after checking wins on full board)
             elif num_spaces == 0:
                 self.winner = "Nobody"
                 return
