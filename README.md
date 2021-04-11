@@ -36,3 +36,7 @@ Another issue with the logic involved the tie condition; there were two ways we 
 
 - Track total played pieces, and if it reaches 9 and there's no winner, it's a tie
 - Scan for empty spaces; once 0 (and no winner), it's a tie
+
+### More Info
+
+- [Ben's Blog Post](https://blog.benhammond.tech/snaketactoe-in-two-hours)
