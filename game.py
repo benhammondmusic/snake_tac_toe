@@ -25,7 +25,11 @@ class Game:
             self.get_play()
             self.print_board()
             self.check_winner()
-            self.switch_turn()
+            if self.winner == None:
+                self.check_tie()
+            if self.winner == None:
+                self.switch_turn()
+            
         print(f'{self.winner} has won!!')
     def __str__(self):
         return str(self.gameboard)
@@ -53,13 +57,10 @@ class Game:
                 return
             else:
                 print('This space has already been played')
-    def check_winner(self):
 
-        # track number of unplayed spaces
-        num_spaces = 0
-        for obj in self.gameboard:
-            if obj.mark == ' ':
-                num_spaces += 1
+
+
+    def check_winner(self):
 
         # loop ALL of the win condition options
         for state in self.winning_states:
@@ -74,11 +75,23 @@ class Game:
                     1]].mark == 'O' and self.gameboard[state[2]].mark == 'O':
                 self.winner = 'O'
                 return True
-            # tie condition (must come after checking wins on full board)
-            elif num_spaces == 0:
-                self.winner = "Nobody"
-                return
+        
         return False
+
+
+    def check_tie(self):
+        # track number of unplayed spaces
+        num_spaces = 0
+        for obj in self.gameboard:
+            if obj.mark == ' ':
+                num_spaces += 1
+
+         # tie condition (must come after checking wins on full board)
+        if num_spaces == 0:
+            self.winner = "Nobody"
+        
+        return
+
 
 # class for each of the nine spaces        
 class GamePiece:
