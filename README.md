@@ -1,6 +1,6 @@
 # Snake-Tac-Toe
 
-> Command line Tic-Tac-Toe game written in Python in 2 hours as a group project
+> Command line game of Tic-Tac-Toe, written in Python in 2 hours as a group project
 
 ![Screen grab of command line game play](snake_tac_toe.gif)
 
@@ -17,6 +17,15 @@ We were required to implement classes in this Python coding exercises, so our gr
 
 ## Tricky Bits
 
+### Making Game "Playable" in Command Line
+
+There's a neat little snippet of code that's been helpful recently, since we are mainly coding on the terminal with no GUI or view engine. It's a one-liner (plus a package import) that clears the terminal (similar to **CMD+K** or `clear`). If you'd like your code to display a clear screen (it actually just autoscrolls it down), simply:
+
+1. `import os`
+2. use `os.system('clear')` (on Mac)
+
+We utilized this to clear the screen before each redraw of the screen in our `Game`'s `while()` loop.
+
 ### Checking for Win
 
 The logic behind win a "win" relies on iterating over an array of all possible win conditions, and checking the current state of the board against each. We struggled getting these checks to work, until we finally isolated the bug: we were comparing the string `'O'` or `'X'` to the _**object**_ `GamePiece`, rather than the string _**property**_`GamePiece.mark` as we intended.
@@ -26,4 +35,4 @@ The logic behind win a "win" relies on iterating over an array of all possible w
 Another issue with the logic involved the tie condition; there were two ways we discussed that could check for a tie:
 
 - Track total played pieces, and if it reaches 9 and there's no winner, it's a tie
-- Scan for empty spaces; once there are none left (and no winner), it's a tie
+- Scan for empty spaces; once 0 (and no winner), it's a tie
