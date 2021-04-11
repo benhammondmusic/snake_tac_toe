@@ -1,4 +1,4 @@
-# Snake-Tac-Toe
+# Snake_Tac_Toe
 
 > Command line game of Tic-Tac-Toe, written in Python in 2 hours as a group project
 
