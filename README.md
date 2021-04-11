@@ -19,7 +19,7 @@ We were required to implement classes in this Python coding exercises, so our gr
 
 ### Checking for Win
 
-- The logic behind win a "win" relies on iterating over an array of all possible win conditions, and checking the current state of the board against each. We struggled getting these checks to work, until we finally isolated the bug: we are comparing the string `'O'` or `'X'` to the _**object**_ `GamePiece`, rather than the string _**property**_`GamePiece.mark` as we intended.
+The logic behind win a "win" relies on iterating over an array of all possible win conditions, and checking the current state of the board against each. We struggled getting these checks to work, until we finally isolated the bug: we were comparing the string `'O'` or `'X'` to the _**object**_ `GamePiece`, rather than the string _**property**_`GamePiece.mark` as we intended.
 
 ### Checking for Tie
 
